@@ -1,23 +1,38 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useState } from 'react';
 import './App.css';
+import CounterApp from './Component/CounterApp';
 
 function App() {
+  const[count,setCount]=useState(0);
+  const[arrayNumber,setarrayNumber]=useState([]);
+
+
+  function increment(){
+  setCount(count+1)
+  setarrayNumber([...arrayNumber,count+1]);
+  console.log(count,"print the numbers");
+  
+   }
+  function decrement(){
+  setCount(count-1)
+  }
+
+
+
+
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='btn'>
+        <button onClick={increment}>Increment</button>
+        <div><b>Counter Value {count}</b></div>
+        <button onClick={decrement} 
+        disabled={count===0}>Decrement</button>
+      </div>
+      <div>
+       <CounterApp listOfItem={arrayNumber} />
+      </div>
     </div>
   );
 }
